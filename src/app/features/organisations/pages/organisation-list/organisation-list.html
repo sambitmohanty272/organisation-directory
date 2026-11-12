@@ -1,1 +1,131 @@
-<p>organisation-list works!</p>
+
+@if (labels()['pageTitle']) {
+  <main class="page-container">
+
+    <header class="page-header">
+      <h1>{{ labels()['pageTitle'] }}</h1>
+      <p>{{ labels()['pageDescription'] }}</p>
+    </header>
+
+
+<section class="toolbar">
+
+  <input
+    type="search"
+    [placeholder]="labels()['searchPlaceholder']"
+    [value]="searchTerm()"
+    (input)="onSearchInput($event)"
+  />
+
+  <select
+    [value]="statusFilter()"
+    (change)="onStatusChange($event)"
+  >
+    <option value="all">
+      {{ labels()['allStatuses'] }}
+    </option>
+    <option value="active">
+      {{ labels()['active'] }}
+    </option>
+    <option value="inactive">
+      {{ labels()['inactive'] }}
+    </option>
+    <option value="suspended">
+      {{ labels()['suspended'] }}
+    </option>
+    <option value="unknown">
+      {{ labels()['unknown'] }}
+    </option>
+  </select>
+
+  <select
+    [value]="sortBy()"
+    (change)="onSortChange($event)"
+  >
+    <option value="name">
+      {{ labels()['sortName'] }}
+    </option>
+    <option value="newest">
+      {{ labels()['sortNewest'] }}
+    </option>
+    <option value="oldest">
+      {{ labels()['sortOldest'] }}
+    </option>
+  </select>
+
+</section>
+
+
+    @if (loading()) {
+      <p class="message">
+        {{ labels()['loading'] }}
+      </p>
+    }
+
+    @if (error()) {
+      <div class="message error">
+        <p>{{ labels()['error'] }}</p>
+        <button type="button" (click)="loadOrganisations()">
+          {{ labels()['retry'] }}
+        </button>
+      </div>
+    }
+
+    @if (!loading() && !error() && organisations().length === 0) {
+      <p class="message">
+        {{ labels()['empty'] }}
+      </p>
+    }
+
+    @if (!loading() && !error() && organisations().length > 0) {
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>{{ labels()['name'] }}</th>
+              <th>{{ labels()['status'] }}</th>
+              <th>{{ labels()['members'] }}</th>
+              <th>{{ labels()['owner'] }}</th>
+              <th>{{ labels()['createdAt'] }}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          @for (org of visibleOrganisations(); track org.rowKey) {
+              <tr>
+                <td>{{ org.name ?? labels()['notAvailable'] }}</td>
+
+                <td>
+                  {{ labels()[org.status] }}
+                </td>
+
+                <td>
+                  {{ org.memberCount ?? labels()['notAvailable'] }}
+                </td>
+
+                <td>
+                  {{ org.ownerEmail ?? labels()['notAvailable'] }}
+                </td>
+
+                <td>
+                  @if (org.createdAt) {
+                    {{ org.createdAt | date:'mediumDate' }}
+                  } @else {
+                    {{ labels()['notAvailable'] }}
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        @if (visibleOrganisations().length === 0 && organisations().length > 0) {
+  <p class="message">
+    {{ labels()['noResults'] }}
+  </p>
+}
+      </div>
+    }
+
+  </main>
+}
+

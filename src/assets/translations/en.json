@@ -1,0 +1,25 @@
+
+{
+  "pageTitle": "Organisation Directory",
+  "pageDescription": "View and manage your organisations.",
+  "loading": "Loading organisations...",
+  "error": "Unable to load organisations.",
+  "retry": "Try again",
+  "empty": "No organisations found.",
+  "name": "Organisation Name",
+  "status": "Status",
+  "members": "Members",
+  "owner": "Owner",
+  "createdAt": "Created Date",
+  "notAvailable": "Not available",
+  "active": "Active",
+  "inactive": "Inactive",
+  "suspended": "Suspended",
+  "unknown": "Unknown",
+  "searchPlaceholder": "Search by organisation or owner...",
+  "allStatuses": "All statuses",
+  "sortName": "Sort by name",
+  "sortNewest": "Newest first",
+  "sortOldest": "Oldest first",
+  "noResults": "No matching organisations found."
+}

@@ -1,0 +1,82 @@
+
+.page-container {
+  padding: var(--spacing-lg, 24px);
+}
+
+.page-header {
+  margin-bottom: 24px;
+}
+
+.page-header h1 {
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.page-header p {
+  color: var(--text-secondary, #666);
+}
+
+.table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+th,
+td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border-color, #ddd);
+}
+
+th {
+  background: var(--surface-secondary, #f5f5f5);
+  font-weight: 600;
+}
+
+.message {
+  padding: 20px;
+}
+
+.error {
+  color: var(--error-color, #b42318);
+}
+
+button {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.toolbar input,
+.toolbar select {
+  padding: 10px 12px;
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.toolbar input {
+  flex: 1;
+  min-width: 220px;
+}
+
+.toolbar select {
+  min-width: 150px;
+}
+
+.toolbar input:focus,
+.toolbar select:focus {
+  outline: 2px solid var(--focus-color, #2563eb);
+  outline-offset: 2px;
+}
